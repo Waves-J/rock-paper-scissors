@@ -18,9 +18,19 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    
+    if (humanChoice == computerChoice) {
+        console.log("Both chose " + humanChoice + ". Tie!");
+    } else if (humanChoice == "rock" && computerChoice == "scissors") {
+        console.log("You win! " + humanChoice + " beats " + computerChoice)
+        humanScore++;
+    } else if (humanChoice == "paper" && computerChoice == "rock") {
+        console.log("You win! " + humanChoice + " beats " + computerChoice)
+        humanScore++;
+    } else if (humanChoice == "scissors" && computerChoice == "paper") {
+        console.log("You win! " + humanChoice + " beats " + computerChoice)
+        humanScore++;
+    } else {
+        console.log("You lose! " + computerChoice + " beats " + humanChoice)
+        computerScore++;
+    }
 }
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
