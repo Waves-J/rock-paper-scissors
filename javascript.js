@@ -1,4 +1,8 @@
 const buttons = document.querySelectorAll("button");
+const display = document.querySelector("div");
+const human_score_display = document.querySelector(".player-score");
+const computer_score_display = document.querySelector(".computer-score");
+const winner = document.querySelector(".winner");
 let humanScore = 0;
 let computerScore = 0;
 
@@ -28,20 +32,36 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+    winner.textContent = "";
     if (humanChoice == computerChoice) {
-        console.log("Both chose " + humanChoice + ". Tie!");
+        display.textContent = "Both chose " + humanChoice + ". Tie!";
     } else if (humanChoice == "rock" && computerChoice == "scissors") {
-        console.log("You win! " + humanChoice + " beats " + computerChoice)
+        display.textContent = "You win! " + humanChoice + " beats " + computerChoice;
         humanScore++;
     } else if (humanChoice == "paper" && computerChoice == "rock") {
-        console.log("You win! " + humanChoice + " beats " + computerChoice)
+        display.textContent = "You win! " + humanChoice + " beats " + computerChoice;
         humanScore++;
     } else if (humanChoice == "scissors" && computerChoice == "paper") {
-        console.log("You win! " + humanChoice + " beats " + computerChoice)
+        display.textContent = "You win! " + humanChoice + " beats " + computerChoice;
         humanScore++;
     } else {
-        console.log("You lose! " + computerChoice + " beats " + humanChoice)
+        display.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
         computerScore++;
+    }
+    human_score_display.textContent = "Player Score: " + humanScore;
+    computer_score_display.textContent = "Computer Score: " + computerScore;
+    updateWinner();
+}
+
+function updateWinner() {
+    if (humanScore >= 5) {
+        winner.textContent = "Player wins!";
+        computerScore = 0;
+        humanScore = 0;
+    } else if (computerScore >= 5) {
+        winner.textContent = "Computer Wins";
+        computerScore = 0;
+        humanScore = 0;
     }
 }
 
